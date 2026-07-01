@@ -324,37 +324,56 @@ export default function App() {
       estimationTarif: estTarif
     };
 
-    // Send the email via FormSubmit AJAX API
-    fetch("https://formsubmit.co/ajax/contact@sofianechaab.com", {
+    // Helper to URL encode object keys/values for Netlify Form POST
+    const encode = (data: { [key: string]: string }) => {
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    };
+
+    // If testing on localhost, simulate success directly without actual HTTP request to Netlify
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      setTimeout(() => {
+        const updated = [newInquiry, ...inquiries];
+        setInquiries(updated);
+        localStorage.setItem('sofiane_chaab_inquiries', JSON.stringify(updated));
+
+        setLastRefId(refId);
+        setLoading(false);
+        setSubmitSuccess(true);
+
+        setNom('');
+        setEmail('');
+        setDate('');
+        setMessage('');
+      }, 1000);
+      return;
+    }
+
+    // Submit to Netlify Forms (handled automatically by Netlify CDN post-deployment)
+    fetch("/", {
       method: "POST",
-      headers: { 
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        "_subject": `[Nouveau Lead] ${nom} - ${prestation}`,
-        "Référence": refId,
-        "Nom Complet": nom,
-        "Email de contact": email,
-        "Type de Prestation": prestation,
-        "Tarif Estimé": estTarif,
-        "Date Souhaitée": date || 'Non spécifiée',
-        "Description du Projet": message,
-        "_honey": "", // Honeypot field for spam prevention
-        "_captcha": "false" // Disable captcha verification screen to keep UX clean
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contact",
+        "reference": refId,
+        "nom": nom,
+        "email": email,
+        "prestation": prestation,
+        "date": date || 'Non spécifiée',
+        "message": message,
+        "estimationTarif": estTarif
       })
     })
     .then(() => {
-      // Add to local state and localStorage for the photographer's admin panel
       const updated = [newInquiry, ...inquiries];
       setInquiries(updated);
-      localStorage.setItem('sofian_chaab_inquiries', JSON.stringify(updated));
+      localStorage.setItem('sofiane_chaab_inquiries', JSON.stringify(updated));
 
       setLastRefId(refId);
       setLoading(false);
       setSubmitSuccess(true);
 
-      // Clear fields
       setNom('');
       setEmail('');
       setDate('');
@@ -362,16 +381,15 @@ export default function App() {
     })
     .catch((error) => {
       console.error("Error submitting form", error);
-      // Fallback: even if email fails, record it locally so the lead isn't lost!
+      // Fallback: even if Netlify submission fails, log it locally so lead is not lost
       const updated = [newInquiry, ...inquiries];
       setInquiries(updated);
-      localStorage.setItem('sofian_chaab_inquiries', JSON.stringify(updated));
+      localStorage.setItem('sofiane_chaab_inquiries', JSON.stringify(updated));
 
       setLastRefId(refId);
       setLoading(false);
       setSubmitSuccess(true);
       
-      // Clear fields
       setNom('');
       setEmail('');
       setDate('');
@@ -1003,7 +1021,9 @@ export default function App() {
                     </button>
                   </div>
                 ) : (
-                  <form id="portfolio-contact-form" onSubmit={handleSubmitContact} className="space-y-5">
+                  <form id="portfolio-contact-form" name="contact" data-netlify="true" onSubmit={handleSubmitContact} className="space-y-5">
+                    {/* Hidden input for Netlify Form detection */}
+                    <input type="hidden" name="form-name" value="contact" />
                     
                     {/* Nom et Email */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1014,6 +1034,7 @@ export default function App() {
                         <input
                           type="text"
                           id="client-name"
+                          name="nom"
                           required
                           value={nom}
                           onChange={(e) => setNom(e.target.value)}
@@ -1021,13 +1042,14 @@ export default function App() {
                           className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-amber-200 focus:bg-white/10 transition-all text-white placeholder:text-white/30"
                         />
                       </div>
-
+ 
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase tracking-widest font-bold text-white/70 block flex items-center gap-1">
                           <Mail className="w-3 h-3 text-amber-200" /> Votre adresse e-mail *
                         </label>
                         <input
                           type="email"
+                          name="email"
                           required
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
@@ -1036,7 +1058,7 @@ export default function App() {
                         />
                       </div>
                     </div>
-
+ 
                     {/* Prestation et Date */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
@@ -1044,6 +1066,7 @@ export default function App() {
                           <Camera className="w-3 h-3 text-amber-200" /> Type de prestation
                         </label>
                         <select
+                          name="prestation"
                           value={prestation}
                           onChange={(e) => setPrestation(e.target.value)}
                           className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-amber-200 focus:bg-white/10 transition-all text-white appearance-none cursor-pointer"
@@ -1055,26 +1078,28 @@ export default function App() {
                           <option className="bg-[#1A1A1A] text-white" value="Concert & Spectacle">Concert & Spectacle (Sur devis)</option>
                         </select>
                       </div>
-
+ 
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase tracking-widest font-bold text-white/70 block flex items-center gap-1">
                           <Calendar className="w-3 h-3 text-amber-200" /> Date souhaitée (optionnelle)
                         </label>
                         <input
                           type="date"
+                          name="date"
                           value={date}
                           onChange={(e) => setDate(e.target.value)}
                           className="w-full bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-amber-200 focus:bg-white/10 transition-all text-white cursor-pointer"
                         />
                       </div>
                     </div>
-
+ 
                     {/* Message */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-white/70 block flex items-center gap-1">
                         <MessageSquare className="w-3 h-3 text-amber-200" /> Description de votre projet *
                       </label>
                       <textarea
+                        name="message"
                         required
                         rows={4}
                         value={message}
