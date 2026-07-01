@@ -240,9 +240,50 @@ export default function App() {
         setInquiries(INITIAL_INQUIRIES);
       }
     } else {
-      localStorage.setItem('sofian_chaab_inquiries', JSON.stringify(INITIAL_INQUIRIES));
+      localStorage.setItem('sofiane_chaab_inquiries', JSON.stringify(INITIAL_INQUIRIES));
       setInquiries(INITIAL_INQUIRIES);
     }
+  }, []);
+
+  // Scroll Spy to track active section while scrolling
+  useEffect(() => {
+    const sections = [
+      { id: 'galerie-section', key: 'galerie' },
+      { id: 'passion-section', key: 'passion' },
+      { id: 'tarifs-section', key: 'tarifs' },
+      { id: 'contact-section', key: 'contact' }
+    ];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -40% 0px', // Trigger when section is in the middle of viewport
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const section = sections.find(s => s.id === entry.target.id);
+          if (section) {
+            setActiveSection(section.key);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach(s => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sections.forEach(s => {
+        const el = document.getElementById(s.id);
+        if (el) observer.unobserve(el);
+      });
+    };
   }, []);
 
   // Filter photos
