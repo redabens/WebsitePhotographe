@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+:root {
+  --brand-cream: #F9F8F6;
+  --brand-charcoal: #1A1A1A;
+  --card-bg: #F9F8F6;
+}
+
+/* Dark mode overrides */
+.dark {
+  --brand-cream: #0E0E0D;
+  --brand-charcoal: #ECEAE6;
+  --card-bg: #181816;
+}
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-card-bg: var(--card-bg);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-cream);
+    color: var(--color-brand-charcoal);
+  }
+}
+
+/* Hide scrollbar for gallery but keep behavior */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

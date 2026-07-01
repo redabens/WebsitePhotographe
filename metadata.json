@@ -1,0 +1,6 @@
+{
+  "name": "Sofian Chaab - Portfolio de Photographie",
+  "description": "Site vitrine et portfolio interactif pour Sofian Chaab, photographe professionnel en Algérie. Galerie interactive filtrable, tarifs détaillés et formulaire de contact direct.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
