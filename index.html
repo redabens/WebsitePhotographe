@@ -10,6 +10,17 @@
   </head>
   <body class="bg-[#F9F8F6] text-[#1A1A1A] antialiased">
     <div id="root"></div>
+    
+    <!-- Hidden form mirror for Netlify build-time form detection -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="nom" />
+      <input type="email" name="email" />
+      <input type="text" name="prestation" />
+      <input type="text" name="date" />
+      <textarea name="message"></textarea>
+      <input type="text" name="reference" />
+    </form>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
