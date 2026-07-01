@@ -64,7 +64,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/1.8 | 1/200s | ISO 320',
     description: "Saisie sur le vif de la présentation d'Aymen devant la maquette de son projet de fin d'études et le jury solennel de l'école nationale supérieure d'architecture d'Alger.",
-    url: '/photos/soutenanceaymen.jpg'
+    url: '/photos/soutenanceaymen.webp'
   },
   {
     id: 'soutenance-ziania',
@@ -76,7 +76,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/1.6 | 1/160s | ISO 250',
     description: "Immortalisation de la prestation de thèse d'excellence d'une future praticienne au sein du prestigieux amphithéâtre de la Faculté de Médecine de Ziania.",
-    url: '/photos/soutenancemedecine.jpg'
+    url: '/photos/soutenancemedecine.webp'
   },
   {
     id: 'soutenance-usthb',
@@ -88,7 +88,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/2.2 | 1/125s | ISO 400',
     description: "Saisie sur le vif de la présentation de fin d'études à l'USTHB. L'étudiant, équipé d'un micro-cravate, explique sereinement sa recherche devant son jury et la projection interactive de son support de thèse.",
-    url: '/photos/soutenanceetudiantusthb.jpg'
+    url: '/photos/soutenanceetudiantusthb.webp'
   },
   {
     id: 'concert-babylone',
@@ -100,7 +100,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/1.8 | 1/250s | ISO 800',
     description: "Amin Babylone vibrant de ferveur sur la scène du Théâtre de Verdure, arborant fièrement le maillot blanc de l'équipe nationale algérienne avec sa guitare classique lors de ce concert mémorable.",
-    url: '/photos/babylone.jpg'
+    url: '/photos/babylone.webp'
   },
   {
     id: 'concert-elbesta',
@@ -112,7 +112,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 28mm f/1.8 USM',
     settings: 'f/1.8 | 1/250s | ISO 1600',
     description: "L'énergie brute, populaire et authentique du groupe El Besta, capturée en clair-obscur d'une proximité intense avec les artistes et leur public dévoué.",
-    url: '/photos/elbesta.jpg'
+    url: '/photos/elbesta.webp'
   },
   {
     id: 'promo-dentaire',
@@ -124,7 +124,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF-S 10-18mm f/4.5-5.6 IS STM',
     settings: 'f/4.5 | 1/320s | ISO 125',
     description: "La photo de promo officielle, joyeuse et structurée, de la classe de troisième année en chirurgie dentaire d'Alger, symbole de rigueur et d'esprit collectif.",
-    url: '/photos/promo3emedentaire.jpg'
+    url: '/photos/promo3emedentaire.webp'
   },
   {
     id: 'mariage-inspiration',
@@ -148,7 +148,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/2.2 | 1/160s | ISO 100',
     description: "Un portrait saisissant capturé au crépuscule. Le regard direct du sujet contraste avec l'intensité dramatique d'un ciel enflammé aux teintes orange et dorées se reflétant sur la mer.",
-    url: '/photos/PortraitSoleil.jpg'
+    url: '/photos/PortraitSoleil.webp'
   },
   {
     id: 'portrait-urbantrail',
@@ -160,7 +160,7 @@ const GALLERY_PHOTOS: Photo[] = [
     lens: 'EF 50mm f/1.8 II',
     settings: 'f/2.0 | 1/320s | ISO 100',
     description: "Capture vibrante de la joie et de la camaraderie lors du semi-marathon Alger Urban Trail aux Sablettes. Les sourires complices de ces coureurs illustrent à la perfection l'esprit de dépassement et le sentiment d'appartenir à une grande famille unie dans l'effort.",
-    url: '/photos/PortraitUrbanTrail.jpg'
+    url: '/photos/PortraitUrbanTrail.webp'
   }
 ];
 
@@ -429,7 +429,7 @@ export default function App() {
       {/* HEADER MOBILE */}
       <header id="mobile-header" className="lg:hidden sticky top-0 z-40 bg-brand-cream/90 backdrop-blur-md border-b border-brand-charcoal/10 px-6 py-4 flex justify-between items-center transition-colors">
         <div>
-          <span className="text-2xl font-serif tracking-tighter uppercase font-semibold text-brand-charcoal">Sofian Chaab</span>
+          <span className="text-2xl font-serif tracking-tighter uppercase font-semibold text-brand-charcoal">Sofiane Chaab</span>
           <span className="block text-[8px] uppercase tracking-[0.2em] opacity-60 text-brand-charcoal">Photographie d'Art</span>
         </div>
         <div className="flex items-center gap-2">
@@ -706,8 +706,8 @@ export default function App() {
               <div className="grid grid-cols-3 gap-3 md:w-1/2 w-full h-[240px] md:h-[280px]">
                 <div className="group relative rounded-2xl overflow-hidden h-full">
                   <img 
-                    src="/photos/PhotoSofian1.jpg" 
-                    alt="Sofian Chaab - Portrait d'accueil" 
+                    src="/photos/PhotoSofian1.webp" 
+                    alt="Sofiane Chaab - Portrait d'accueil" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -717,8 +717,8 @@ export default function App() {
                 </div>
                 <div className="group relative rounded-2xl overflow-hidden h-full translate-y-2 md:translate-y-4">
                   <img 
-                    src="/photos/photosofian2.jpg" 
-                    alt="Sofian Chaab - Passion technique" 
+                    src="/photos/photosofian2.webp" 
+                    alt="Sofiane Chaab - Passion technique" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -728,8 +728,8 @@ export default function App() {
                 </div>
                 <div className="group relative rounded-2xl overflow-hidden h-full">
                   <img 
-                    src="/photos/photosofian3.jpg" 
-                    alt="Sofian Chaab - Sur le terrain" 
+                    src="/photos/photosofian3.webp" 
+                    alt="Sofiane Chaab - Sur le terrain" 
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -955,7 +955,7 @@ export default function App() {
                     </div>
                     <div>
                       <p className="font-bold uppercase tracking-wider text-[9px] opacity-40">E-mail de contact</p>
-                      <a href="mailto:contact@sofianchaab.com" className="hover:underline font-medium">contact@sofianchaab.com</a>
+                      <a href="mailto:contact@sofianechaab.com" className="hover:underline font-medium">contact@sofianechaab.com</a>
                     </div>
                   </div>
 
@@ -984,7 +984,7 @@ export default function App() {
                     <div className="space-y-2">
                       <h4 className="text-2xl font-serif text-amber-200">Demande envoyée !</h4>
                       <p className="text-xs text-white/80 max-w-sm mx-auto">
-                        Merci beaucoup ! Votre message a bien été enregistré. Sofian Chaab analysera votre demande personnellement.
+                        Merci beaucoup ! Votre message a bien été enregistré. Sofiane Chaab analysera votre demande personnellement.
                       </p>
                     </div>
 
@@ -1180,7 +1180,7 @@ export default function App() {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-charcoal/10 pb-4">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h4 className="text-xl font-serif text-brand-charcoal">Tableau de Bord — Sofian Chaab</h4>
+                          <h4 className="text-xl font-serif text-brand-charcoal">Tableau de Bord — Sofiane Chaab</h4>
                           <span className="text-[9px] bg-emerald-500/10 text-emerald-600 font-bold px-1.5 py-0.5 rounded-md uppercase tracking-wider">Session Active</span>
                         </div>
                         <p className="text-xs text-brand-charcoal/60">Gestionnaire de contact, de devis et statistiques de prospection en temps réel.</p>
@@ -1308,7 +1308,7 @@ export default function App() {
 
                                 <div className="flex items-center gap-2">
                                   <a
-                                    href={`mailto:${inq.email}?subject=Réponse Sofian Chaab - Réf ${inq.id}&body=Bonjour ${inq.nom},%0D%0A%0D%0AMerci pour l'intérêt porté à mon travail.`}
+                                    href={`mailto:${inq.email}?subject=Réponse Sofiane Chaab - Réf ${inq.id}&body=Bonjour ${inq.nom},%0D%0A%0D%0AMerci pour l'intérêt porté à mon travail.`}
                                     className="text-blue-600 hover:underline font-bold tracking-wide uppercase text-[9px] flex items-center gap-0.5 bg-blue-500/10 px-2 py-1 rounded"
                                   >
                                     Répondre <ExternalLink className="w-2.5 h-2.5" />
